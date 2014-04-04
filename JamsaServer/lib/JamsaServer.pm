@@ -2,6 +2,7 @@ package JamsaServer;
 use Dancer ':syntax';
 use Dancer::Serializer::JSON;
 use YAML;
+use Data::Dumper;
 
 my $FILES_PATH="/home/jamsa/files";
 
@@ -25,6 +26,16 @@ get '/:id' => sub {
     $content->{"id"} = $id;
     $content->{"status"} = $status;
     return ($content);
+};
+
+post '/:id/:command' => sub {
+    my $id = params->{id};
+    my $command = params->{command};
+    my $data = request->body;
+    # Write data in the YAML file
+    my $status = 0;
+    YAML::DumpFile("$FILES_PATH/$id.yaml", {command => $command, data => $data}) or $status = -1;
+    return ({status => $status});
 };
 
 true;
