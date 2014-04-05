@@ -18,10 +18,10 @@ curl http://server/1234
    "command" : "speech"
 }
 ```
-** status: 0 if OK and -1 if ERROR.
-** id: tag id (useful for the client to check if the answer matches the request).
-** command: action that the client has to execute.
-** data: arguments for the command.
+  * status: 0 if OK and -1 if ERROR.
+  * id: tag id (useful for the client to check if the answer matches the request).
+  * command: action that the client has to execute.
+  * data: arguments for the command.
 
 Therefore the client will execute the speech command, that is a text to speech action over the data field.
 
